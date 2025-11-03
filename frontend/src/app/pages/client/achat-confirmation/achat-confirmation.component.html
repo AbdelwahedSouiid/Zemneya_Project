@@ -1,0 +1,42 @@
+<div class="container py-5">
+  <h1 class="display-6 mb-4">Validation de la commande</h1>
+
+  <form (ngSubmit)="validateOrder()">
+    <!-- Adresse de Livraison -->
+    <div class="form-group mb-4">
+      <label for="shippingAddress">Adresse de livraison</label>
+      <input
+        type="text"
+        class="form-control"
+        id="shippingAddress"
+        [(ngModel)]="shippingAddress"
+        name="shippingAddress"
+        required
+        placeholder="Entrez votre adresse de livraison">
+    </div>
+
+    <!-- Méthode de Paiement -->
+    <div class="form-group mb-4">
+      <label for="paymentMethod">Méthode de paiement</label>
+      <select
+        class="form-control"
+        id="paymentMethod"
+        [(ngModel)]="paymentMethod"
+        name="paymentMethod"
+        required>
+        <option value="">Choisir une méthode</option>
+        <option value="creditCard">Carte de Crédit</option>
+        <option value="paypal">PayPal</option>
+      </select>
+    </div>
+
+    <!-- Détails du Panier -->
+    <div class="bg-light p-4 rounded mb-4">
+      <h5>Sous-total: {{  - 3 | number:'1.2-2' }} Dt</h5>
+      <h5>Frais de Livraison: 3.00 Dt</h5>
+      <h5>Total: Dt</h5>
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100">Valider la commande</button>
+  </form>
+</div>

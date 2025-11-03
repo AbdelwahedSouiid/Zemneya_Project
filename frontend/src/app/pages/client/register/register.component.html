@@ -1,0 +1,81 @@
+<div class="container-fluid py-5 bg-light hero-header">
+  <div class="container py-5">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-md-5">
+        <div class="card shadow border-0">
+          <div class="card-body p-5">
+            <h2 class="text-center text-primary">Créer un compte</h2>
+            <!-- Logo Section -->
+            <div class="text-center ">
+              <img
+                src="assets/client/img/logo.png"
+                alt="Logo"
+                class="img-fluid"
+                style="max-width: 200px;"
+              />
+            </div>
+            <form>
+              <!-- Full Name Field -->
+              <div class="mb-4">
+                <label for="fullname" class="form-label fw-bold">Nom complet</label>
+                <input
+                  type="text"
+                  id="fullname"
+                  class="form-control form-control-lg"
+                  name="fullname"
+                  placeholder="Entrez votre nom complet"
+                  required
+                />
+              </div>
+              <!-- Email Field -->
+              <div class="mb-4">
+                <label for="email" class="form-label fw-bold">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  class="form-control form-control-lg"
+                  name="email"
+                  placeholder="Entrez votre adresse email"
+                  required
+                />
+              </div>
+              <!-- Password Field -->
+              <div class="mb-4">
+                <label for="password" class="form-label fw-bold">Mot de passe</label>
+                <input
+                  type="password"
+                  id="password"
+                  class="form-control form-control-lg"
+                  name="password"
+                  placeholder="Entrez votre mot de passe"
+                  required
+                />
+              </div>
+              <!-- Confirm Password Field -->
+              <div class="mb-4">
+                <label for="confirmPassword" class="form-label fw-bold">Confirmez le mot de passe</label>
+                <input
+                  type="password"
+                  id="confirmPassword"
+                  class="form-control form-control-lg"
+                  name="confirmPassword"
+                  placeholder="Confirmez votre mot de passe"
+                  required
+                />
+              </div>
+              <!-- Submit Button -->
+              <button type="submit" class="btn btn-primary w-100 btn-lg">
+                Créer un compte
+              </button>
+              <!-- Login Link -->
+              <div class="text-center mt-4">
+                <span>Déjà inscrit ?</span>
+                <a routerLink="/login" class="text-primary text-decoration-none fw-bold">Se connecter</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,6 @@
+.fruite-img img {
+  width: 200px;  /* Définir une largeur fixe */
+  height: 200px; /* Définir une hauteur fixe */
+  object-fit: cover; /* Assure que l'image est coupée pour remplir l'espace sans distorsion */
+}
+/* You can add global styles to this file, and also import other style files */

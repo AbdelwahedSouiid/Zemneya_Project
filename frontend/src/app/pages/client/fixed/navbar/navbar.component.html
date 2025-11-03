@@ -1,0 +1,83 @@
+<!-- Navbar start -->
+<div class="container-fluid fixed-top">
+  <!-- First Navbar -->
+  <div class="container topbar bg-primary d-none d-lg-block">
+    <div class="d-flex justify-content-between">
+      <div class="top-info ps-2">
+        <small class="me-3"><i class="fas fa-map-marker-alt me-2 text-secondary"></i> <a href="#" class="text-white">Tunisie , Marsa</a></small>
+        <small class="me-3"><i class="fas fa-envelope me-2 text-secondary"></i><a href="#" class="text-white">EmailExample.com</a></small>
+      </div>
+    </div>
+  </div>
+  <!-- First Navbar -->
+
+  <!-- Second Navbar -->
+  <div class="container px-0">
+    <nav class="navbar navbar-light bg-white navbar-expand-xl">
+      <a routerLink="/home" class="navbar-brand">
+        <img src="assets/client/img/logo.png" alt="Logo" class="logo"/>
+      </a>
+      <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="fa fa-bars text-primary"></span>
+      </button>
+      <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+        <div class="navbar-nav mx-auto">
+          <div class="search-container position-relative">
+            <input
+              type="text"
+              class="form-control border rounded-pill bg-white ps-5"
+              placeholder="Rechercher..."
+              aria-label="Search"
+              [(ngModel)]="searchTerm"
+            (keyup)="searchProducts()"/> <!-- Trigger search on keyup -->
+            <i class="fas fa-search text-dark position-absolute search-icon"></i>
+          </div>
+        </div>
+        <div class="d-flex m-3 me-0">
+          <!-- Mon Compte -->
+          <a routerLink="/login" class="position-relative me-4 my-auto text-decoration-none text-dark text-center">
+            <i class="fas fa-user fa-2x"></i>
+            <small class="d-block">Mon Compte</small>
+          </a>
+
+          <!-- Aide -->
+          <a routerLink="/reclamation" class="position-relative me-4 my-auto text-decoration-none text-dark text-center">
+            <i class="fas fa-question-circle fa-2x"></i>
+            <small class="d-block">Aide</small>
+          </a>
+
+          <!-- Panier -->
+          <a routerLink="/panier" class="position-relative me-4 my-auto text-decoration-none text-dark text-center">
+            <i class="fas fa-shopping-bag fa-2x"></i>
+            <span class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style="top: -5px; left: 15px; height: 20px; min-width: 20px;">0</span>
+            <small class="d-block">Panier</small>
+          </a>
+
+          <!-- Favoris -->
+          <a href="#" class="my-auto text-decoration-none text-dark text-center">
+            <i class="fas fa-heart fa-2x"></i>
+            <small class="d-block">Favoris</small>
+          </a>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <!-- Second Navbar -->
+
+  <!-- Third Navbar -->
+  <nav class="navbar navbar-expand-lg py-1" style="height: 45px;">
+    <div class="collapse navbar-collapse" id="categoryNavbar">
+      <ul class="navbar-nav ms-5">
+        <li class="nav-item px-2" *ngFor="let category of categories">
+          <a
+            [routerLink]="['/products/categorie',category.nom]"
+            class="nav-link text-dark fw-bold small text-sm py-1">
+            {{ category.nom }}
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!-- Third Navbar -->
+</div>
+<!-- Navbar end -->

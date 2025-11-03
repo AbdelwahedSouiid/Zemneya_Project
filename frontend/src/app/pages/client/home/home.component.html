@@ -1,0 +1,304 @@
+<!-- Hero Start -->
+<div class="container-fluid py-5 mb-5 hero-header">
+  <div class="container py-5">
+    <div class="row g-5 align-items-center">
+      <!-- Left Section -->
+      <div class="col-md-12 col-lg-7">
+        <h4 class="mb-3 text-primary">100% Tunisien</h4>
+        <h1 class="mb-5 display-3 text-light">Découvrez et Valorisez les Trésors de la Tunisie</h1>
+        <p class="mb-4 text-white">
+          Application dédiée à la découverte et à la valorisation des trésors culturels, artisanaux et gastronomiques de notre beau pays. Notre mission est de préserver et de partager le riche patrimoine des régions de Tunisie.
+        </p>
+        <!-- Button Section -->
+        <div class="text-start mt-4">
+          <button
+            type="button"
+            class="btn btn-primary btn-lg rounded-pill px-5 py-3 shadow"
+            routerLink="/products" >
+            Découvrir
+          </button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Hero End -->
+<!-- Services  Start-->
+
+<div class="container-fluid featurs py-5">
+  <div class="container py-5">
+    <div class="row g-4">
+      <!-- Artisanat local -->
+      <div class="col-md-6 col-lg-3">
+        <div class="featurs-item text-center rounded bg-light p-4">
+          <div class="featurs-icon btn-square rounded-circle bg-secondary mb-5 mx-auto">
+            <i class="fas fa-hand-sparkles fa-3x text-white"></i>
+          </div>
+          <div class="featurs-content text-center">
+            <h5>Artisanat Local</h5>
+            <p class="mb-0">Produits 100% faits main par des artisans tunisiens</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gastronomie -->
+      <div class="col-md-6 col-lg-3">
+        <div class="featurs-item text-center rounded bg-light p-4">
+          <div class="featurs-icon btn-square rounded-circle bg-secondary mb-5 mx-auto">
+            <i class="fas fa-utensils fa-3x text-white"></i>
+          </div>
+          <div class="featurs-content text-center">
+            <h5>Gastronomie Tunisienne</h5>
+            <p class="mb-0">Découvrez les saveurs uniques de nos régions</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Héritage culturel -->
+      <div class="col-md-6 col-lg-3">
+        <div class="featurs-item text-center rounded bg-light p-4">
+          <div class="featurs-icon btn-square rounded-circle bg-secondary mb-5 mx-auto">
+            <i class="fas fa-landmark fa-3x text-white"></i>
+          </div>
+          <div class="featurs-content text-center">
+            <h5>Héritage Culturel</h5>
+            <p class="mb-0">Explorez les sites historiques et traditions locales</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Assistance Locale -->
+      <div class="col-md-6 col-lg-3">
+        <div class="featurs-item text-center rounded bg-light p-4">
+          <div class="featurs-icon btn-square rounded-circle bg-secondary mb-5 mx-auto">
+            <i class="fas fa-phone-volume fa-3x text-white"></i>
+          </div>
+          <div class="featurs-content text-center">
+            <h5>Assistance Locale</h5>
+            <p class="mb-0">Disponible en Tunisien et Français 24/7</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Services End-->
+
+<!-- Shop Start-->
+<div class="container-fluid fruite py-5">
+  <div class="container py-5">
+    <div class="tab-class text-center">
+      <div class="row g-4">
+        <div class="col-lg-4 text-start">
+          <h1>Notre Produits</h1>
+        </div>
+        <div class="col-lg-8 text-end">
+          <ul class="nav nav-pills d-inline-flex text-center mb-5">
+            <!-- Loop through categories -->
+            <li class="nav-item" *ngFor="let categorie of categories">
+              <a class="d-flex m-2 py-2 bg-light rounded-pill" (click)="filterByCategory(categorie.nom)">
+                <span class="text-dark" style="width: 130px;">{{categorie.nom}}</span>
+              </a>
+            </li>
+            <!-- Option for showing all products -->
+            <li class="nav-item">
+              <a class="d-flex m-2 py-2 bg-light rounded-pill" (click)="filterByCategory('all')">
+                <span class="text-dark" style="width: 130px;">All</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tab-content">
+        <div id="tab-1" class="tab-pane fade show p-0 active">
+          <div class="row g-4">
+            <!-- Loop through filtered products -->
+            <div class="col-md-6 col-lg-4 col-xl-3" *ngFor="let produit of filteredProducts">
+              <div class="rounded position-relative fruite-item">
+                <!-- Product image -->
+                <div class="fruite-img">
+                  <img
+                    [routerLink]="['/products/product-detail', produit.id]"
+                    [src]="'/assets/client/img/produit/' + produit.image"
+                    class="img-fluid w-100 rounded-top"
+                    [alt]="produit.nom"
+                  >
+                </div>
+                <!-- Category of the product -->
+                <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">
+                  {{ produit.categorie.nom }}
+                </div>
+                <!-- Product details -->
+                <div class="p-4 border border-secondary border-top-0 rounded-bottom">
+                  <h4>{{ produit.nom }}</h4>
+                  <p *ngIf="produit.description">
+                    {{ produit.description.length > 100 ? (produit.description | slice: 0: 100) + '...' : produit.description }}
+                  </p>
+                  <div class="d-flex justify-content-between flex-lg-wrap">
+                    <p *ngIf="produit.prix != 0" class="text-dark fs-5 fw-bold mb-0">
+                      {{ produit.prix }} DT
+                    </p>
+                    <a routerLink="/panier" class="btn border border-secondary rounded-pill px-3 text-primary">
+                      <i class="fa fa-shopping-bag me-2 text-primary"></i> Ajouter au panier
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- Shop End-->
+
+
+<!-- Banner Section Start-->
+<div class="container-fluid banner bg-secondary my-5">
+  <div class="container py-5">
+    <div class="row g-4 align-items-center">
+      <div class="col-lg-6">
+        <div class="py-4">
+          <h1 class="display-3 text-white">Découvrez la Tunisie</h1>
+          <p class="fw-normal display-3 text-dark mb-4">Ses trésors cachés</p>
+          <p class="mb-4 text-dark">Explorez les lieux emblématiques, les saveurs locales et les traditions uniques de notre pays.</p>
+          <a href="/blog" class="banner-btn btn border-2 border-white rounded-pill text-dark py-3 px-5">En savoir plus</a>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="position-relative">
+          <img src="../../../../assets/client/img/site/image.jpg" class="img-fluid w-100 rounded" alt="Tunisie">
+          <div class="d-flex align-items-center justify-content-center bg-white rounded-circle position-absolute" style="width: 140px; height: 140px; top: 0; left: 0;">
+            <h1 style="font-size: 100px;">1</h1>
+            <div class="d-flex flex-column">
+              <span class="h2 mb-0">100+</span>
+              <span class="h4 text-muted mb-0">lieux</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Banner Section End -->
+
+
+
+<!-- Services Start -->
+<div class="container-fluid py-5">
+  <div class="container">
+    <div class="bg-light p-5 rounded">
+      <div class="row g-4 justify-content-center">
+        <!-- Visiteurs satisfaits -->
+        <div class="col-md-6 col-lg-6 col-xl-3">
+          <div class="counter bg-white rounded p-5">
+            <i class="fa fa-smile-beam text-secondary"></i>
+            <h4>Visiteurs Satisfaits</h4>
+            <h1>5,432</h1>
+          </div>
+        </div>
+
+        <!-- Événements Culturels -->
+        <div class="col-md-6 col-lg-6 col-xl-3">
+          <div class="counter bg-white rounded p-5">
+            <i class="fa fa-calendar-alt text-secondary"></i>
+            <h4>Événements Culturels</h4>
+            <h1>125</h1>
+          </div>
+        </div>
+
+        <!-- Produits Artisanaux -->
+        <div class="col-md-6 col-lg-6 col-xl-3">
+          <div class="counter bg-white rounded p-5">
+            <i class="fa fa-hand-holding-heart text-secondary"></i>
+            <h4>Produits Artisanaux</h4>
+            <h1>980+</h1>
+          </div>
+        </div>
+
+        <!-- Régions Couvertes -->
+        <div class="col-md-6 col-lg-6 col-xl-3">
+          <div class="counter bg-white rounded p-5">
+            <i class="fa fa-map-marker-alt text-secondary"></i>
+            <h4>Régions Couvertes</h4>
+            <h1>24</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Services End -->
+
+
+<!-- Temoiniage End -->
+<div class="container-fluid testimonial py-5">
+  <div class="container py-5">
+    <div class="testimonial-header text-center">
+      <h4 class="text-primary">Ce que nos clients disent</h4>
+      <h1 class="display-5 mb-5 text-dark">Avis de nos clients !</h1>
+    </div>
+    <div class="row">
+      <!-- Témoignage 1 -->
+      <div class="col-md-6">
+        <div class="testimonial-item img-border-radius bg-light rounded p-4">
+          <div class="position-relative">
+            <i class="fa fa-quote-right fa-2x text-secondary position-absolute" style="bottom: 30px; right: 0;"></i>
+            <div class="mb-4 pb-4 border-bottom border-secondary">
+              <p class="mb-0">"La qualité des produits artisanaux est exceptionnelle, j'ai été ravi de découvrir ces trésors culturels." </p>
+            </div>
+            <div class="d-flex align-items-center flex-nowrap">
+              <div class="bg-secondary rounded">
+                <img src="assets/client/img/users/user1.jpg" class="img-fluid rounded" style="width: 100px; height: 100px;" alt="Client 1">
+              </div>
+              <div class="ms-4 d-block">
+                <h4 class="text-dark">Ahmed Ben Ali</h4>
+                <p class="m-0 pb-3">Passionné de culture tunisienne</p>
+                <div class="d-flex pe-5">
+                  <i class="fas fa-star text-primary"></i>
+                  <i class="fas fa-star text-primary"></i>
+                  <i class="fas fa-star text-primary"></i>
+                  <i class="fas fa-star text-primary"></i>
+                  <i class="fas fa-star text-primary"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Témoignage 2 -->
+      <div class="col-md-6">
+        <div class="testimonial-item img-border-radius bg-light rounded p-4">
+          <div class="position-relative">
+            <i class="fa fa-quote-right fa-2x text-secondary position-absolute" style="bottom: 30px; right: 0;"></i>
+            <div class="mb-4 pb-4 border-bottom border-secondary">
+              <p class="mb-0">"Un service client attentif et des produits qui m'ont permis de découvrir la richesse de la Tunisie." </p>
+            </div>
+            <div class="d-flex align-items-center flex-nowrap">
+              <div class="bg-secondary rounded">
+                <img src="assets/client/img/users/user2.jpg" class="img-fluid rounded" style="width: 100px; height: 100px;" alt="Client 2">
+              </div>
+              <div class="ms-4 d-block">
+                <h4 class="text-dark">Fatima Mahjoubi</h4>
+                <p class="m-0 pb-3">Amatrice de l'artisanat</p>
+                <div class="d-flex pe-5">
+                  <i class="fas fa-star text-primary"></i>
+                  <i class="fas fa-star text-primary"></i>
+                  <i class="fas fa-star text-primary"></i>
+                  <i class="fas fa-star text-primary"></i>
+                  <i class="fas fa-star text-primary"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

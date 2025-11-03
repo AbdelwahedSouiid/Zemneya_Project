@@ -1,0 +1,103 @@
+<!-- En-tête de la page unique Début -->
+<div class="container-fluid page-header py-5">
+  <h1 class="text-center text-white display-6">Panier</h1>
+  <ol class="breadcrumb justify-content-center mb-0">
+    <li class="breadcrumb-item"><a href="#">Accueil</a></li>
+    <li class="breadcrumb-item"><a href="#">Pages</a></li>
+    <li class="breadcrumb-item active text-white">Panier</li>
+  </ol>
+</div>
+<!-- En-tête de la page unique Fin -->
+
+<!-- Page Panier Début -->
+<div class="container-fluid py-5">
+  <div class="container py-5">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">Produit</th>
+          <th scope="col">Nom</th>
+          <th scope="col">Prix</th>
+          <th scope="col">Quantité</th>
+          <th scope="col">Total</th>
+          <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of currentPanier.detailPanier">
+          <td>
+            <img
+              [src]="'/assets/client/img/produit/' + item.variation.produit.image"
+              class="img-fluid rounded-circle"
+              style="width: 80px; height: 80px;"
+              [alt]="'Image de ' + item.variation.produit.nom">
+          </td>
+          <td>
+            <p class="mb-0">{{ item.variation.produit.nom }} - {{ item.variation.taille }}</p>
+          </td>
+          <td>
+            <p class="mb-0">{{ item.variation.prixUnitaire | number:'1.2-2' }} Dt</p>
+          </td>
+          <td>
+            <div class="input-group quantity" style="width: 120px;">
+              <button
+                class="btn btn-sm btn-minus bg-light border"
+                (click)="decreaseQuantity(item)">
+                <i class="fa fa-minus"></i>
+              </button>
+              <input
+                type="text"
+                class="form-control form-control-sm text-center border-0"
+                [value]="item.quantite"
+                readonly>
+              <button
+                class="btn btn-sm btn-plus bg-light border"
+                (click)="increaseQuantity(item)">
+                <i class="fa fa-plus"></i>
+              </button>
+            </div>
+          </td>
+          <td>
+            <p class="mb-0">{{ item.variation.prixUnitaire * item.quantite | number:'1.2-2' }} Dt</p>
+          </td>
+          <td>
+            <button
+              class="btn btn-sm btn-danger rounded-circle"
+              (click)="removeFromCart(item.id)">
+              <i class="fa fa-times"></i>
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Section du Total du Panier -->
+    <div class="row justify-content-end">
+      <div class="col-sm-8 col-md-6 col-lg-4">
+        <div class="bg-light p-4 rounded">
+          <h1 class="display-6 mb-4">Total du Panier <span class="fw-normal">Total</span></h1>
+          <div class="d-flex justify-content-between mb-4">
+            <h5>Sous-total :</h5>
+            <p>{{ calculateSubtotal() | number:'1.2-2' }} Dt</p>
+          </div>
+          <div class="d-flex justify-content-between mb-4">
+            <h5>Livraison :</h5>
+            <p>Tarif fixe : 3.00 Dt</p>
+          </div>
+          <div class="border-top border-bottom py-3 d-flex justify-content-between">
+            <h5>Total :</h5>
+            <p>{{ calculateSubtotal() + 3 | number:'1.2-2' }} Dt</p>
+          </div>
+          <button
+            class="btn btn-primary w-100 text-uppercase mt-3"
+            (click)="addCommande()">
+            Passer à la caisse
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Page Panier Fin -->
